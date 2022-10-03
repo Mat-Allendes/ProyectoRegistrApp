@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators,ReactiveFormsModule} from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -12,7 +12,8 @@ export class RegisterPage implements OnInit {
 
 //Este constructor hace la funcion de FormBuild, osea, que es un constructor del formulario que requerie de campos para su funcion (ingresarle variables form)
   constructor(public fb: FormBuilder,
-    public alertController: AlertController) { 
+    public alertController: AlertController,
+    public navCtrl: NavController) { 
     this.formularioRegistro = this.fb.group({
       //Para validar que dentro del FormGroup se encuentren los campos rellenados importamos Validators
       'nombre': new FormControl("",Validators.required,),
@@ -45,6 +46,7 @@ export class RegisterPage implements OnInit {
     }
 
     localStorage.setItem('usuario',JSON.stringify(usuario));
+    this.navCtrl.navigateRoot('home');
     console.log('Si guarde al usuario')
   }
 
