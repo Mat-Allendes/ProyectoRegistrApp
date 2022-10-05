@@ -10,8 +10,7 @@ export class HomePage implements OnInit{
   pageTitle = 'home';
   isNotHome = false;
   constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
   }
 
 }

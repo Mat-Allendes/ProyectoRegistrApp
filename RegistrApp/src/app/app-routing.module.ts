@@ -1,40 +1,48 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { IngresadoGuard } from './ingresado.guard';
+import { NoIngresadoGuard } from './no-ingresado.guard';
 
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    canActivate: [NoIngresadoGuard]
   },
   {
     path: 'about',
-    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
-  },
-  {
-    path: '404',
-    loadChildren: () => import('./pages/page404/page404.module').then( m => m.Page404PageModule)
+    loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule),
+    canActivate: [IngresadoGuard]
   },
   {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule),
+    canActivate: [NoIngresadoGuard]
   },
   {
     path: 'convertor',
-    loadChildren: () => import('./pages/convertor/convertor.module').then( m => m.ConvertorPageModule)
+    loadChildren: () => import('./pages/convertor/convertor.module').then( m => m.ConvertorPageModule),
+    canActivate: [IngresadoGuard]
+  },
+  {
+    path: '404',
+    loadChildren: () => import('./pages/e404/e404.module').then( m => m.E404PageModule)
   },
   {
     path: '**',
-    redirectTo: '404'
+    redirectTo: '404',
+    pathMatch: 'full'
   },
 ];
 
