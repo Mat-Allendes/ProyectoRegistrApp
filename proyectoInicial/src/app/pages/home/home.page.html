@@ -1,0 +1,17 @@
+<app-header [isNotHome]="isNotHome" [pageTitle]="pageTitle"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-buttons>
+    <ion-button color="success" [routerLink]="['/login']" routerLinkActive="router-link-active" >
+      <ion-icon name="log-in-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a [routerLink]="['/about']">Sobre Nosotros</a></p>
+    <p><a [routerLink]="lala" >Probando page404</a></p>
+  </div>
+  
+  <app-fab-menu></app-fab-menu>
+</ion-content>
